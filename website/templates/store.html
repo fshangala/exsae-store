@@ -105,7 +105,22 @@
                 </div>
             </div>
         </div>
-        <!-- Bottom Bar End -->       
+        <!-- Bottom Bar End -->
+
+        {% if messages %}
+        <!--alerts-->
+            <div class="a-alert p-2">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show shadow border border-white" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {% block main %}{% endblock main %}
         <!-- Footer Start -->
         <div class="footer">
