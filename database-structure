@@ -1,0 +1,60 @@
+#Category
+Category{
+	Name,
+	Icon,
+	Status
+}
+
+#Brand
+Brand{
+	User,
+	Name,
+	Logo
+}
+
+#Product
+Produc{
+	Category,
+	Brand,
+	Product Name,
+	Usual Price,
+	Listing Price,
+	Description,
+	Spec,
+	Review,
+	Image
+}
+
+#Size
+Size{
+	Product,
+	size
+}
+
+#Color
+Color{
+	Product,
+	color
+}
+
+#Specifications
+Spec{
+	Product,
+	value
+}
+
+#Reviews
+Review{
+	Product,
+	name,
+	email,
+	rating,
+	comment,
+	date
+}
+
+#Images
+Image{
+	product,
+	image
+}
