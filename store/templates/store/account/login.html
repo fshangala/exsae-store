@@ -20,6 +20,30 @@ Sign Up & Login
 <div class="login">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-6">
+                <div class="login-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="type" value="login">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username</label>
+                                <input class="form-control" name="username" type="text" placeholder="Username" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <input class="form-control" name="password" type="password" placeholder="Password" required>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn">Login</button>
+                            </div>
+                        </div>
+                        <div class="m-2">
+                            <a href="{% url 'account:forgot-password' %}">Forgot Password</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="col-lg-6">    
                 <div class="register-form">
                 <form method="post">
@@ -52,27 +76,6 @@ Sign Up & Login
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn">Sign Up</button>
-                        </div>
-                    </div>
-                </form>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="login-form">
-                <form method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="type" value="login">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Username</label>
-                            <input class="form-control" name="username" type="text" placeholder="Username" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Password</label>
-                            <input class="form-control" name="password" type="text" placeholder="Password" required>
-                        </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn">Login</button>
                         </div>
                     </div>
                 </form>
