@@ -58,3 +58,8 @@ Image{
 	product,
 	image
 }
+
+#Profile
+Profile{
+	is_seller,
+}

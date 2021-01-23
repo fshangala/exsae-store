@@ -32,7 +32,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> {{ user.username }} <a href="{% url 'account:logout' %}" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -43,7 +43,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 					</li>
 
                     <li>
-                        <a class="active-menu"  href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="{% block nav_dashboard %}{% endblock nav_dashboard %}"  href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
 					  <!--
                     <li>
@@ -73,17 +73,19 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                             </li>
                         </ul>
                       </li>  -->
+                    {% if user.profile.is_seller %}
                     <li  >
-                        <a  href="{% url 'store:home' %}"><i class="fa fa-briefcase fa-3x" ></i> My Products</a>
+                        <a  class="{% block nav_myProducts %}{% endblock nav_myProducts %}" href="{% url 'dashboard:my-products' %}"><i class="fa fa-briefcase fa-3x" ></i> My Products</a>
                     </li>
                     <li  >
-                        <a  href="{% url 'store:home' %}"><i class="fa fa-bell-o fa-3x" ></i> Orders</a>
+                        <a  class="{% block nav_mySells %}{% endblock nav_mySells %}" href="{% url 'store:home' %}"><i class="fa fa-money fa-3x" ></i> My Sells</a>
+                    </li>
+                    {% endif %}
+                    <li  >
+                        <a  class="{% block nav_orders %}{% endblock nav_orders %}" href="{% url 'store:home' %}"><i class="fa fa-bell-o fa-3x" ></i> Orders</a>
                     </li>
                     <li  >
-                        <a  href="{% url 'store:home' %}"><i class="fa fa-money fa-3x" ></i> My Sells</a>
-                    </li>
-                    <li  >
-                        <a  href="{% url 'store:home' %}"><i class="fa fa-shopping-cart fa-3x"></i> Store</a>
+                        <a  class="{% block nav_store %}{% endblock nav_store %}" href="{% url 'store:home' %}"><i class="fa fa-shopping-cart fa-3x"></i> Store</a>
                     </li>	
                 </ul>
             </div>

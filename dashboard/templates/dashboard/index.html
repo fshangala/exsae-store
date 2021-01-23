@@ -2,3 +2,63 @@
 {% block title %}
 Dashboard
 {% endblock title %}
+{% block nav_dashboard %}active-menu{% endblock nav_dashboard %}
+
+{% block main %}
+<h2>Dashboard</h2>
+
+{% if user.profile.is_seller %}
+
+{% else %}
+<!-- Button trigger modal -->
+<center>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#be-seller">
+  Become A Seller
+</button>
+</center>
+
+<!-- Modal -->
+<div class="modal fade" id="be-seller" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Become a seller</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="become_seller">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <input type="text" class="form-control" name="address_text" aria-describedby="address_text" placeholder="Full address">
+                      <small id="address_text" class="form-text text-muted">This address may serve as a pickup address</small>
+                    </div>
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control" name="phone" aria-describedby="phone" placeholder="Phone number">
+                      <small id="phone" class="form-text text-muted">Customers may contact you on this.</small>
+                    </div>
+                    <div class="form-group">
+                      <label>Phone 2</label>
+                      <input type="text" class="form-control" name="phone2" aria-describedby="phone2" placeholder="Phone number">
+                      <small id="phone2" class="form-text text-muted">Alternative phone</small>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Terms and conditions</h4>
+                            <p class="card-text">By proceeding you are agreeing to the terms of use</p>
+                        </div>
+                    </div>
+                    <input type="submit" value="I agree" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <b class="text-danger">Close</b>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock main %}

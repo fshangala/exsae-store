@@ -10,7 +10,7 @@ from store_account.functions import get_user_by_id
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'store/account/index.html')
+    return HttpResponseRedirect(reverse('dashboard:index'))
 
 def login_page(request):
     if request.method == "POST":
@@ -67,6 +67,7 @@ def forgot_password(request):
         elif request.POST['type'] == 'password':
             user = User.objects.get(pk=request.POST['user_id'])
             user.set_password(request.POST['password'])
+            user.save()
             messages.success(request, 'Password successfully changed!')
             return HttpResponseRedirect(reverse('account:login'))
     return render(request, 'store/account/forgot-password.html', context)
