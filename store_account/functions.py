@@ -22,7 +22,8 @@ def get_user_by_id(user_id):
             "address_text": profile.address_text,
             "phone": profile.phone,
             "phone2": profile.phone2,
-        }
+        },
+        "is_staff": user.is_staff,
     }
     return obj
 #User end

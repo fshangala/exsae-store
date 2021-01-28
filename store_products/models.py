@@ -13,7 +13,7 @@ class Category(models.Model):
 class Brand(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    logo = models.ImageField(upload_to="brands")
+    logo = models.ImageField(default="brand.jpg", upload_to="brands")
     status = models.CharField(max_length=10)
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Product(models.Model):
     usual_price = models.FloatField()
     listing_price = models.FloatField()
     description = models.TextField()
-    picture = models.ImageField(upload_to="products")
+    picture = models.ImageField(upload_to="products", default="products/default.jpg")
 
     def __str__(self):
         return self.name

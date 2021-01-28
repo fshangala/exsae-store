@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %}
+{% block title %}
+    Dashboard - My Products
+{% endblock title %}
+{% block nav_myProducts %}active-menu{% endblock nav_myProducts %}
+
+{% block main %}
+<h2>My Products</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add Product
+    </div>
+    <div class="panel-body">
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="type" value="add_listing">
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" class="form-control" name="name" aria-describedby="name">
+              <small id="name" class="form-text text-muted">Enter product name</small>
+            </div>
+            <div class="form-group">
+              <label for="">Description</label>
+              <input type="text" class="form-control" name="description" aria-describedby="description">
+              <small id="description" class="form-text text-muted">Enter product description</small>
+            </div>
+            <div class="form-group">
+              <label for="">Usual Price</label>
+              <input type="number" step="0.01" class="form-control" name="usual_price" aria-describedby="usual_price">
+              <small id="usual_price" class="form-text text-muted">Enter product usual price</small>
+            </div>
+            <div class="form-group">
+              <label for="">Listing Price</label>
+              <input type="number" step="0.01" class="form-control" name="listing_price" aria-describedby="listing_price">
+              <small id="listing_price" class="form-text text-muted">Enter product lisitng price</small>
+            </div>
+            <div class="form-group">
+              <label>Choose Brand</label>
+              <select name="brand" class="form-control">
+                {% for brand in user_brands %}
+                  <option value="{{ brand.id }}">{{ brand.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Choose Category</label>
+              <select name="category" class="form-control">
+                {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save">
+        </form>
+    </div>
+</div>
+
+{% endblock main %}

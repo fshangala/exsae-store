@@ -1,0 +1,77 @@
+{% extends 'dashboard.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block nav_categories %}active-menu{% endblock nav_categories %}
+
+{% block main %}
+<h2>Categories</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Categories
+    </div>
+    <div class="panel-body">
+        <div class="clearfix">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#create-category" aria-expanded="false" aria-controls="create-category">Create Category</a>
+            </p>
+            <div class="collapse" id="create-category">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="create_category">
+                    <input type="hidden" name="status" value="">
+                    <input type="hidden" name="icon" value='<i class="fa fa-shopping-bag" aria-hidden="true"></i>'>
+                    
+                    <div class="form-group">
+                      <label>Category Name</label>
+                      <input type="text" class="form-control" name="name" aria-describedby="category-name">
+                      <small id="category-name" class="form-text text-muted">Enter A unique category Name</small>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Create">
+                </form>
+            </div>
+        </div>
+        {% if edit_brand %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="edit_brand">
+                <input type="text" name="id" value="{{ edit_brand.id }}" readonly>
+                <input type="text" name="user" value="{{ edit_brand.user.username }}" readonly>
+                <input type="text" name="status" value="{{ edit_brand.status }}" readonly>
+                <div class="form-group">
+                    <label>Brand Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ edit_brand.name }}">
+                    <small class="form-text text-muted">Enter A unique brand Name</small>
+                </div>
+                <div class="form-group">
+                    <label>Change Logo</label>
+                    <input type="file" name="logo">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Update">
+            </form>
+        {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="categories">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                    <tr>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.status }}</td>
+                        <td><a href="?edit-category={{ category.id }}">EDIT</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        
+    </div>
+</div>
+{% endblock main %}

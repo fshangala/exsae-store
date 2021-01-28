@@ -15,10 +15,10 @@ from django.contrib.messages import constants as messages
 import os
 
 MESSAGE_TAGS = {
-    messages.ERROR: 'alert-danger',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.INFO: 'alert-info',
+    messages.ERROR: 'alert-danger panel-danger',
+    messages.SUCCESS: 'alert-success panel-success',
+    messages.WARNING: 'alert-warning panel-warning',
+    messages.INFO: 'alert-info panel-info',
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -1,4 +1,12 @@
 
+.a-alert{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.alert{
+    position: relative;
+}
 /*=============================================================
     Authour URI: www.binarycart.com
     License: Commons Attribution 3.0

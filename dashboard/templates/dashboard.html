@@ -45,6 +45,14 @@ font-size: 16px;"> {{ user.username }} <a href="{% url 'account:logout' %}" clas
                     <li>
                         <a class="{% block nav_dashboard %}{% endblock nav_dashboard %}"  href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
+                    {% if user.is_staff %}
+                    <li>
+                        <a class="{% block nav_categories %}{% endblock nav_categories %}"  href="{% url 'dashboard:categories' %}"><i class="fa fa-dashboard fa-3x"></i> Categories</a>
+                    </li>
+                    <li>
+                        <a class="{% block nav_brands %}{% endblock nav_brands %}"  href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard fa-3x"></i> Brands</a>
+                    </li>
+                    {% endif %}
 					  <!--
                     <li>
                         <a href="#"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i> Exsae Store<span class="fa arrow"></span></a>
@@ -99,11 +107,13 @@ font-size: 16px;"> {{ user.username }} <a href="{% url 'account:logout' %}" clas
             <!--alerts-->
                 <div class="a-alert p-2">
                     {% for message in messages %}
-                    <div class="alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show shadow border border-white" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>{{ message }}</strong>
+                    <div class="panel {% if message.tags %} {{ message.tags }} {% endif %}">
+                        <div class="panel-heading">
+                            Notification
+                        </div>
+                        <div class="panel-body">
+                            <p>{{ message }}</p>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>

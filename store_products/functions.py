@@ -15,6 +15,13 @@ def get_category_by_id(category_id):
             "status": category.status
         }
     return obj
+
+def get_all_categories():
+    categories = Category.objects.all()
+    categoryList = []
+    for category in categories:
+        categoryList.append(get_category_by_id(category.id))
+    return categoryList
 #Category end
 
 #Brand start
@@ -35,7 +42,7 @@ def get_brand_by_id(brand_id):
 def get_brands_by_user(user):
     brandList = []
     try:
-        brands = Brand.objects.filter(user=User)
+        brands = Brand.objects.filter(user=user)
     except:
         brandList = False
     else:
